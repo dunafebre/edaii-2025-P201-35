@@ -127,8 +127,7 @@ DocumentList *InitDocumentList() { // inicialitzem la llista enllaçada de doc
 void AddDocument(
     DocumentList *list,
     Document *doc) { // funció que afegeix un document a la llista de doc
-  DocumentNode *node = malloc(sizeof(DocumentNode)); // creem l'espai per al
-                                                     // node
+  DocumentNode *node = malloc(sizeof(DocumentNode)); // creem l'espai per al node
   node->doc = doc;           // el punter doc apuntarà al document
   node->next = list->primer; // el punter next apuntarà al primer doc, que ara
                              // serà el segon
@@ -137,15 +136,15 @@ void AddDocument(
   list->count++;
 }
 
-DocumentList *LoadDocumentsFromTheDataset() {
-  char path[200];
-  DocumentList *list = InitDocumentList();
+DocumentList *LoadDocumentsFromTheDataset() { //funció que carrega els documents de la carpeta "datasets"
+  char path[200]; //creem una array on guardarem els directoris, carpetes on estan els arxius wikipedia
+  DocumentList *list = InitDocumentList(); //inicialitzem la llista de documents
   for (int i = 0; i <= 12; i++) {
-    sprintf(path, "datasets/wikipedia12/%d.txt", i);
-    Document *doc = document_desserialize(path);
-    AddDocument(list, doc);
+    sprintf(path, "datasets/wikipedia12/%d.txt", i); //copiem en l'array de directoris els noms per accedir als arxius
+    Document *doc = document_desserialize(path); //convertim els documents a la datastructure Document 
+    AddDocument(list, doc); //afegim cada document convertit
 
-    printf("ID: %d\n", doc->document_id);
+    printf("ID: %d\n", doc->document_id); //i els imprimim tot 
     printf("Titol: %s\n", doc->title);
     printf("Cos: \n%s\n", doc->body);
   }
