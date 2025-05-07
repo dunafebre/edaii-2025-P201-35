@@ -3,6 +3,11 @@
 
 #define MAX_LINKS 1000
 
+#include <stdlib.h>
+#include <string.h>
+
+// lab01
+
 typedef struct {
   int ids[MAX_LINKS];
   int count;
@@ -12,12 +17,25 @@ typedef struct {
   char *title;
   int document_id;
   char *body;
-  float relevance;
   Links *links;
 } Document;
+
+typedef struct DocumentNode {
+  Document *doc;
+  struct DocumentNode *next;
+} DocumentNode;
+
+typedef struct {
+  DocumentNode *primer;
+  int count;
+} DocumentList;
 
 Document *document_desserialize(char *path);
 Links *LinksInit();
 void FreeDocument(Document *document);
+
+DocumentList *InitDocumentList();
+void AddDocument(DocumentList *list, Document *doc);
+DocumentList *LoadDocumentsFromTheDataset();
 
 #endif

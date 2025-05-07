@@ -7,6 +7,8 @@
 #include <string.h>
 #include <sys/stat.h>
 
+// lab01
+
 Links *LinksInit() { // inicilitzem una llista de links
   Links *links = (Links *)malloc(sizeof(Links)); // reservem espai per la llista
   links->count = 0; // inicialitzem el comptador a 0
@@ -114,3 +116,66 @@ void FreeDocument(Document *document) {
   free(document->links);
   free(document);
 }
+
+DocumentList *InitDocumentList() { // inicialitzem la llista enllaçada de doc
+  DocumentList *llista = malloc(sizeof(DocumentList)); // creem l'espai
+  llista->primer = NULL; // encara no hi ha cap doc a la llista
+  llista->count = 0;
+  return llista;
+}
+
+void AddDocument(
+    DocumentList *list,
+    Document *doc) { // funció que afegeix un document a la llista de doc
+  DocumentNode *node = malloc(sizeof(DocumentNode)); // creem l'espai per al
+                                                     // node
+  node->doc = doc;           // el punter doc apuntarà al document
+  node->next = list->primer; // el punter next apuntarà al primer doc, que ara
+                             // serà el segon
+  list->primer =
+      node; // actualitzem la primera posició de la llista com el nou doc
+  list->count++;
+}
+
+DocumentList *LoadDocumentsFromTheDataset() {
+  char path[200];
+  DocumentList *list = InitDocumentList();
+  for (int i = 0; i <= 12; i++) {
+    sprintf(path, "datasets/wikipedia12/%d.txt", i);
+    Document *doc = document_desserialize(path);
+    AddDocument(list, doc);
+
+    printf("ID: %d\n", doc->document_id);
+    printf("Titol: %s\n", doc->title);
+    printf("Cos: \n%s\n", doc->body);
+  }
+  return list;
+}
+
+void SelectOneDoc() {
+  int DocumentSelect;
+  DocumentList *list = LoadDocumentsFromDataset();
+
+  int index = 0;
+  for (DocumentNode *node = list->primer; node != NULL; node = node->next) {
+      printf("[%d] %s\n", index, node->doc->title);
+      index++;
+  }
+
+  printf("Selecciona el document que vols visualitzar: ");
+  scanf("%d", &DocumentSelect);
+
+  int index = 0;
+  for (DocumentNode *node = list->primer; node != NULL;
+       node = node->next, index++) {
+    if (index == DocumentSelect) {
+      printf("ID: %d\n", node->doc->document_id);
+      printf("Títol: %s\n", node->doc->title);
+      printf("Cos:\n%s\n", node->doc->body);
+      return;
+    }
+  }
+  printf("Index no vàlid.\n");
+}
+
+
