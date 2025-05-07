@@ -144,7 +144,7 @@ DocumentList *LoadDocumentsFromTheDataset() { //funció que carrega els document
     Document *doc = document_desserialize(path); //convertim els documents a la datastructure Document 
     AddDocument(list, doc); //afegim cada document convertit
 
-    printf("ID: %d\n", doc->document_id); //i els imprimim totsss 
+    printf("ID: %d\n", doc->document_id); //i els imprimim tots 
     printf("Titol: %s\n", doc->title);
     printf("Cos: \n%s\n", doc->body);
   }
