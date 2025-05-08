@@ -1,6 +1,8 @@
 #ifndef CONSULTES_H
 #define CONSULTES_H
 
+#include "documents.h"
+
 #define MAX_PARAULA 100
 
 // lab02

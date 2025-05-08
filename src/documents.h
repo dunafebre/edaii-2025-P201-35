@@ -36,6 +36,7 @@ void FreeDocument(Document *document);
 
 DocumentList *InitDocumentList();
 void AddDocument(DocumentList *list, Document *doc);
-DocumentList *LoadDocumentsFromTheDataset();
+DocumentList *LoadDocumentsFromDataset();
+void SelectOneDoc(); 
 
 #endif

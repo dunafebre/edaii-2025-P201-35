@@ -55,7 +55,6 @@ Document *document_desserialize(
 
   strcpy(document->title, buffer); // copiem el text de buffer en l'apartat
                                    // title de la data structure
-  document->title[sizeof(document->title) - 1] = '\0'; // tanquem el text
 
   // parse body
   char linkBuffer[64];
@@ -136,7 +135,7 @@ void AddDocument(
   list->count++;
 }
 
-DocumentList *LoadDocumentsFromTheDataset() { //funció que carrega els documents de la carpeta "datasets"
+DocumentList *LoadDocumentsFromDataset() { //funció que carrega els documents de la carpeta "datasets"
   char path[200]; //creem una array on guardarem els directoris, carpetes on estan els arxius wikipedia
   DocumentList *list = InitDocumentList(); //inicialitzem la llista de documents
   for (int i = 0; i <= 12; i++) {
@@ -151,24 +150,24 @@ DocumentList *LoadDocumentsFromTheDataset() { //funció que carrega els document
   return list;
 }
 
-void SelectOneDoc() {
-  int DocumentSelect;
-  DocumentList *list = LoadDocumentsFromDataset();
+void SelectOneDoc() { //funció que permet a l'usuari llegir els documents
+  int DocumentSeleccionat; 
+  DocumentList *list = LoadDocumentsFromDataset(); //la llista que retorna la funció anterior la guardem en la forma de la data structure DocumentList
 
   int index = 0;
-  for (DocumentNode *node = list->primer; node != NULL; node = node->next) {
-      printf("[%d] %s\n", index, node->doc->title);
+  for (DocumentNode *node = list->primer; node != NULL; node = node->next) { //inicialitzem un document anomenat node i anem iterant passant pels "next"
+      printf("[%d] %s\n", index, node->doc->title); //imprimim els titols de tots els documents per a que l'usuari els pugui llegir
       index++;
   }
 
-  printf("Selecciona el document que vols visualitzar: ");
-  scanf("%d", &DocumentSelect);
+  printf("Selecciona el document que vols visualitzar: "); //preguntem a l'usuari quin doc escull, pel seu índex 
+  scanf("%d", &DocumentSeleccionat);
 
-  int index = 0;
-  for (DocumentNode *node = list->primer; node != NULL;
+  index = 0;
+  for (DocumentNode *node = list->primer; node != NULL; //tornema iterar sobre els documents
        node = node->next, index++) {
-    if (index == DocumentSelect) {
-      printf("ID: %d\n", node->doc->document_id);
+    if (index == (12-DocumentSeleccionat)) { //quan trobem el document seleccionat
+      printf("ID: %d\n", node->doc->document_id); //imprimim el seu títol, ID i cos
       printf("Títol: %s\n", node->doc->title);
       printf("Cos:\n%s\n", node->doc->body);
       return;
