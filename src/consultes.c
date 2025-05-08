@@ -46,7 +46,7 @@ void SearchDocs(DocumentList *docs, char paraules_clau[][MAX_PARAULA], int N){
   }
 
   if (trobats == 0) {
-      printf("No s'han trobat documents amb totes les paraules clau.\n");
+      printf("No s'han trobat documents amb les paraules clau.\n");
   } 
 }
 
@@ -74,7 +74,47 @@ void KeyWords(){
 }
 
 
+/*Inicialitzem la cua a NULL
+static Query *queue[3] = {NULL, NULL, NULL};
+static int count = 0;
+// Show the last 3 queries using a queue
+void query_queue(Query *q) {
+  // Creem un bucle per desplaçar tots els elements de la cua una posició
+  // endarrera
+  if (count == 3) {
+    Query_free(queue[2]);
+    count = 2;
+  }
+  for (int i = count; i > 0; --i) {
+    queue[i] = queue[i - 1];
+  }
+  // Introduïm el nou element al primer element de la cua, ja que és el més
+  // recent
+  queue[0] = q;
+  count++; // Incrementem el contador
 
+  printf("L'historial de les últimes consultes és:\n");
+  for (int i = 0; i < count; ++i) {
+    printf("·Query %d: ", i + 1);
+    for (QueryNode *n = queue[i]->head; n; n = n->next) {
+      if (n->exclude) {
+        printf("-%s ", n->keyword);
+      } else {
+        printf("%s ", n->keyword);
+      }
+    }
+    printf("\n");
+  }
+  printf("\n");
+}
+
+void query_queue_clear(void) {
+  for (int i = 0; i < count; ++i) {
+    Query_free(queue[i]);
+    queue[i] = NULL;
+  }
+  count = 0;
+}*/
 
 
 
