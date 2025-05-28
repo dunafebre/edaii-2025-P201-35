@@ -18,6 +18,7 @@ typedef struct {
   int document_id;
   char *body;
   Links *links;
+  int relevance;
 } Document;
 
 typedef struct DocumentNode {
@@ -37,6 +38,6 @@ void FreeDocument(Document *document);
 DocumentList *InitDocumentList();
 void AddDocument(DocumentList *list, Document *doc);
 DocumentList *LoadDocumentsFromDataset();
-void SelectOneDoc(); 
+void SelectOneDoc();
 
 #endif

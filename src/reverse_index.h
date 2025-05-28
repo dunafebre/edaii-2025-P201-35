@@ -7,13 +7,14 @@
 #define MAX_BUCKETS 1009 // nombre primer, millora dispersió
 
 typedef struct WordEntry {
-    char word[MAX_WORD_LEN];
-    DocumentList *docs; // llista de documents on apareix la paraula
-    struct WordEntry *next; // gestió de col·lisions
+  char word[MAX_WORD_LEN];
+  DocumentList *docs;     // llista de documents on apareix la paraula
+  struct WordEntry *next; // gestió de col·lisions
 } WordEntry;
 
 typedef struct {
-    WordEntry *buckets[MAX_BUCKETS];
+  WordEntry *buckets[MAX_BUCKETS]; // llista de totes les paraules amb els seus
+                                   // respectius documents
 } ReverseIndex;
 
 ReverseIndex *InitReverseIndex();
