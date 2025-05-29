@@ -1,6 +1,8 @@
 #ifndef REVERSE_INDEX_H
 #define REVERSE_INDEX_H
 
+// lab03
+
 #include "documents.h"
 
 #define MAX_WORD_LEN 30
@@ -17,11 +19,12 @@ typedef struct {
                                    // respectius documents
 } ReverseIndex;
 
-ReverseIndex *InitReverseIndex();
+ReverseIndex *InitHashMap();
+void Normalize(char *word);
 void AddWordToIndex(ReverseIndex *index, const char *word, Document *doc);
 DocumentList *GetDocumentsForWord(ReverseIndex *index, const char *word);
-void BuildReverseIndex(ReverseIndex *index, DocumentList *docs);
+void BuildHashMap(ReverseIndex *index, DocumentList *docs);
 unsigned int hash(const char *str);
-void FreeReverseIndex(ReverseIndex *index);
+void FreeHashMap(ReverseIndex *index);
 
 #endif

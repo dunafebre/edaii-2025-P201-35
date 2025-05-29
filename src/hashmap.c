@@ -1,8 +1,11 @@
-#include "reverse_index.h"
+#include "hashmap.h"
+#include "graph.h"
 #include <assert.h>
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
+
+// lab03
 
 // funció hash
 unsigned int hash(const char *str) {
@@ -16,8 +19,7 @@ unsigned int hash(const char *str) {
   return hash % MAX_BUCKETS;
 }
 
-ReverseIndex *
-InitReverseIndex() { // funció que inicialitza l'índex en el hashmap
+ReverseIndex *InitHashMap() { // funció que inicialitza l'índex en el hashmap
   ReverseIndex *index = malloc(sizeof(ReverseIndex));
   for (int i = 0; i < MAX_BUCKETS; ++i) {
     index->buckets[i] = NULL; // omple la llista de paraules a NULL
@@ -25,7 +27,7 @@ InitReverseIndex() { // funció que inicialitza l'índex en el hashmap
   return index;
 }
 
-void normalize(
+void Normalize(
     char *word) { // funció que converteix una string a la seva equivalent en
                   // minúscules i sense signes de puntuació
   for (int i = 0; word[i]; ++i) {
@@ -42,7 +44,7 @@ void AddWordToIndex(ReverseIndex *index, const char *w, Document *doc) {
   char word[MAX_WORD_LEN];
   strcpy(word, w); // copiem la paraula en una variable word per poder
                    // tractar-la sense modificar la original
-  normalize(word); // passem la paraula a minúscules i eliminem els signes de
+  Normalize(word); // passem la paraula a minúscules i eliminem els signes de
                    // puntuació amb la funció creada anteriorment
   unsigned int h = hash(word); // h = index on anirà la paraula en el hashmap
   WordEntry *entry = index->buckets[h]; // accedim al bucket del hashmap on
@@ -52,7 +54,7 @@ void AddWordToIndex(ReverseIndex *index, const char *w, Document *doc) {
                   // sigui, que entry ja existeix
     if (strcmp(entry->word, word) == 0) { // comprovem que la paraula coincideix
       AddDocument(entry->docs, doc);      // afegeix el document a la llista de
-                                     // documents de la paraula en qüestió
+                                          // documents de la paraula en qüestió
       return;
     }
     entry = entry->next; // si l'entry existeix i la paraula no concideix
@@ -64,7 +66,7 @@ void AddWordToIndex(ReverseIndex *index, const char *w, Document *doc) {
   entry->docs = InitDocumentList();  // incialitzem la llista de doc buida
   AddDocument(entry->docs, doc);     // afegim el doc
   entry->next = index->buckets[h];   // el next de la nova paraula apunta a la
-                                   // primera que ja hi havia
+                                     // primera que ja hi havia
   index->buckets[h] = entry; // afegeix la nova entrada al principi del bucket
 }
 
@@ -102,7 +104,7 @@ void extractWords(ReverseIndex *index, Document *doc, const char *text) {
   }
 }
 
-void BuildReverseIndex(
+void BuildHashMap(
     ReverseIndex *index,
     DocumentList *docs) { // funció que analitza tots els doc i guarda cada
                           // paraula al diccionari ReverseIndex
@@ -122,7 +124,7 @@ DocumentList *GetDocumentsForWord(
         *w) { // funció que donada una paraula troba els doc en què apareix
   char word[MAX_WORD_LEN];
   strcpy(word, w);
-  normalize(word); // convertim la paraula per assegurar-nos de que coincideix
+  Normalize(word); // convertim la paraula per assegurar-nos de que coincideix
                    // amb la que tenim guardada
   unsigned int h = hash(word);
   WordEntry *entry = index->buckets[h];
@@ -140,7 +142,7 @@ DocumentList *GetDocumentsForWord(
                // en el bucket o bé si l'índex està buit
 }
 
-void FreeReverseIndex(ReverseIndex *index) { // buidem el hashmap
+void FreeHashMap(ReverseIndex *index) { // buidem el hashmap
   for (int i = 0; i < MAX_BUCKETS; i++) {
     WordEntry *entry = index->buckets[i];
     while (entry) {

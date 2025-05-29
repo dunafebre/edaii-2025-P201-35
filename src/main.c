@@ -1,42 +1,44 @@
-#include <stdio.h>
-#include "documents.h"
 #include "consultes.h"
-#include "reverse_index.h"
+#include "documents.h"
 #include "graph.h"
+#include "hashmap.h"
+#include <stdio.h>
+
+#define NUM_DOCUMENTS 12
 
 int main() {
-    // 1. Carregar documents
-    DocumentList *docs = LoadDocumentsFromDataset();
+  // carrega i inicialitza dades
+  DocumentList *docs = LoadDocumentsFromDataset();
+  ReverseIndex *index = InitHashMap();
+  BuildHashMap(index, docs);
 
-    // 2. Construir l'índex invertit
-    ReverseIndex *index = InitReverseIndex();
-    BuildReverseIndex(index, docs);
+  DocumentGraph *graph = InitDocumentGraph(NUM_DOCUMENTS);
+  BuildGraphFromDocuments(graph, docs);
+  CalculateRelevance(graph, docs);
 
-    // 3. Menú principal
-    int opcio;
-    do {
-        printf("\nMENÚ PRINCIPAL:\n");
-        printf("1. Visualitzar un document\n");
-        printf("2. Fer una consulta per paraules clau\n");
-        printf("3. Sortir\n> ");
-        scanf("%d", &opcio);
+  // menú principal
+  int opcio = 0;
+  while (opcio != 4) {
+    printf("\nMENÚ PRINCIPAL:\n");
+    printf("1. Visualitzar un document\n");
+    printf("2. Fer una consulta per paraules clau\n");
+    printf("3. Saber quins son els documents amb més rellevància\n");
+    printf("4. Sortir\n> ");
+    scanf("%d", &opcio);
 
-        switch (opcio) {
-            case 1:
-                SelectOneDoc();
-                break;
-            case 2:
-                paraules_clau();
-                break;
-            case 3:
-                printf("Sortint del programa.\n");
-                break;
-            default:
-                printf("Opció no vàlida.\n");
-                break;
-        }
-    } while (opcio != 3);
-
-    return 0;
+    if (opcio == 1) {
+      SelectOneDoc();
+    } else if (opcio == 2) {
+      FerConsultaAmbIndex(index);
+    } else if (opcio == 3) {
+      PrintDocumentsByRelevance(docs);
+    } else if (opcio == 4) {
+      printf("Sortint del programa.\n");
+    } else {
+      printf("Opció no vàlida.\n");
+    }
+  }
+  FreeHashMap(index);
+  FreeDocumentGraph(graph);
+  return 0;
 }
-

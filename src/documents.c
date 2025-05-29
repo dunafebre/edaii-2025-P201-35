@@ -126,6 +126,12 @@ DocumentList *InitDocumentList() { // inicialitzem la llista enllaçada de doc
 void AddDocument(
     DocumentList *list,
     Document *doc) { // funció que afegeix un document a la llista de doc
+  // comprovem si ja hi és
+  for (DocumentNode *node = list->primer; node != NULL; node = node->next) {
+    if (node->doc->document_id == doc->document_id) {
+      return; // ja hi és, no cal afegir-lo
+    }
+  }
   DocumentNode *node =
       malloc(sizeof(DocumentNode)); // creem l'espai per al node
   node->doc = doc;                  // el punter doc apuntarà al document
@@ -142,17 +148,13 @@ DocumentList *LoadDocumentsFromDataset() { // funció que carrega els documents
                   // estan els arxius wikipedia
   DocumentList *list = InitDocumentList(); // inicialitzem la llista de
                                            // documents
-  for (int i = 0; i <= 12; i++) {
+  for (int i = 12; i >= 0; i--) {
     sprintf(
         path, "datasets/wikipedia12/%d.txt",
         i); // copiem en l'array de directoris els noms per accedir als arxius
     Document *doc = document_desserialize(
         path); // convertim els documents a la datastructure Document
     AddDocument(list, doc); // afegim cada document convertit
-
-    printf("ID: %d\n", doc->document_id); // i els imprimim tots
-    printf("Titol: %s\n", doc->title);
-    printf("Cos: \n%s\n", doc->body);
   }
   return list;
 }
@@ -184,8 +186,7 @@ void SelectOneDoc() { // funció que permet a l'usuari llegir els documents
   for (DocumentNode *node = list->primer;
        node != NULL; // tornema iterar sobre els documents
        node = node->next, index++) {
-    if (index ==
-        (12 - DocumentSeleccionat)) { // quan trobem el document seleccionat
+    if (index == (DocumentSeleccionat)) { // quan trobem el document seleccionat
       printf("ID: %d\n",
              node->doc->document_id); // imprimim el seu títol, ID i cos
       printf("Títol: %s\n", node->doc->title);

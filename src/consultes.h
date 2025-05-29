@@ -2,6 +2,7 @@
 #define CONSULTES_H
 
 #include "documents.h"
+#include "hashmap.h"
 
 #define MAX_PARAULA 100
 
@@ -21,5 +22,10 @@ QueryList *InitQueryList();
 void AddQueryWord(QueryList *list, const char *word);
 void KeyWords();
 void SearchDocs(DocumentList *docs, char paraules_clau[][MAX_PARAULA], int N);
+// aquestes funcions implementen la cerca de paraules (lab02) amb el hashmap
+// (lab03)
+void CercaDocumentsAmbIndex(ReverseIndex *index,
+                            char paraules_clau[][MAX_PARAULA], int N);
+void FerConsultaAmbIndex(ReverseIndex *index);
 
 #endif

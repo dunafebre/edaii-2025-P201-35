@@ -1,7 +1,8 @@
 #include "graph.h"
-#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
+
+// lab04
 
 DocumentGraph *InitDocumentGraph(
     int numDocuments) { // inicialitza el graf amb una matriu d'adjacència
@@ -29,6 +30,24 @@ void AddEdge(DocumentGraph *graph, int fromId,
   }
 }
 
+void BuildGraphFromDocuments(
+    DocumentGraph *graph,
+    DocumentList *docs) { // funció que contrueix la connectivitat del graph
+                          // segons els links dels docs
+  for (DocumentNode *node = docs->primer; node != NULL;
+       node = node->next) {    // recorrem els docs de la llista
+    Document *doc = node->doc; // prenem un doc
+    int fromId =
+        doc->document_id; // guardem el seu id per després cridar a AddEdge
+
+    for (int i = 0; i < doc->links->count; ++i) { // recorre els links del doc
+      int toId = doc->links->ids[i]; // guardem els ids dels doc que estan
+                                     // conectats amb el "principal"
+      AddEdge(graph, fromId, toId);  // creem l'enllaç entre aquests docs
+    }
+  }
+}
+
 int GetIndegree(DocumentGraph *graph,
                 int docId) { // retorna el grau d'entrada (quantes connexions hi
                              // ha amb un doc)
@@ -43,6 +62,7 @@ int GetIndegree(DocumentGraph *graph,
 void CalculateRelevance(DocumentGraph *graph,
                         DocumentList *docs) { // calcula la rellevància de cada
                                               // document segons el seu indegree
+  BuildGraphFromDocuments(graph, docs);
   for (DocumentNode *node = docs->primer; node != NULL;
        node = node->next) { // recorre tots els docs de llista
     int indegree = GetIndegree(
@@ -50,14 +70,6 @@ void CalculateRelevance(DocumentGraph *graph,
     node->doc->relevance =
         indegree; // afegeix aquest valor en la variable "relevance" de cada doc
   }
-}
-
-void FreeDocumentGraph(DocumentGraph *graph) { // allibera la memòria del graf
-  for (int i = 0; i < graph->size; ++i) {
-    free(graph->adjacency[i]);
-  }
-  free(graph->adjacency);
-  free(graph);
 }
 
 // ordena la llista de documents per rellevància (més rellevant primer)
@@ -99,4 +111,21 @@ DocumentList *SortDocumentsByRelevance(DocumentList *list) {
 
   free(array); // buidem l'array
   return list;
+}
+
+void PrintDocumentsByRelevance(
+    DocumentList *list) { // imprimeix els docs amb ordre de rellèvancia
+  list = SortDocumentsByRelevance(list);
+  for (DocumentNode *node = list->primer; node != NULL; node = node->next) {
+    printf("- [%d] %s (rellevància %d)\n", node->doc->document_id,
+           node->doc->title, node->doc->relevance);
+  }
+}
+
+void FreeDocumentGraph(DocumentGraph *graph) { // allibera la memòria del graf
+  for (int i = 0; i < graph->size; ++i) {
+    free(graph->adjacency[i]);
+  }
+  free(graph->adjacency);
+  free(graph);
 }
