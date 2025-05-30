@@ -16,7 +16,7 @@ int main() {
   BuildGraphFromDocuments(graph, docs);
   CalculateRelevance(graph, docs);
 
-  // menú principal
+  // menu principal
   int opcio = 0;
   while (opcio != 4) {
     printf("\nMENÚ PRINCIPAL:\n");
