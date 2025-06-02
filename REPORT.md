@@ -100,10 +100,10 @@ flowchart TD
     style purple fill:#c8a2c8,stroke:#333,stroke-width:1px
     style lavanda fill:#eeedff,stroke:#333,stroke-width:1px
 
+...
+Anàlisi de complexitat
 
-%% Anàlisi de complexitat
-
-"| Descripció                                                           | Big-O       | Justificació                                                                 |
+| Descripció                                                           | Big-O       | Justificació                                                                 |
 |----------------------------------------------------------------------|-------------|------------------------------------------------------------------------------|
 | Parsing d’un document al `struct` (amb enllaços)                    | O(n)        | n = paraules del document; es processen una per una                         |
 | Parsing d’una consulta al `struct`                                  | O(k)        | k = paraules clau de la consulta                                            |
@@ -111,7 +111,7 @@ flowchart TD
 | Recompte de veïns d’un document                                     | O(d)        | d = grau del document; accés directe a la seva llista d’adjacència          |
 | Cerca de documents amb una paraula clau (`HashMap`)                 | O(1)        | Accés directe per clau                                                       |
 | Cerca de documents que continguin totes les paraules clau           | O(k · d)    | d = mida mitjana de la llista de documents per paraula                      |
-| Ordenació dels documents per score de rellevància                   | O(m log m)  | m = documents candidats a ordenar                                           |"
+| Ordenació dels documents per score de rellevància                   | O(m log m)  | m = documents candidats a ordenar                                           |
 
 
 
