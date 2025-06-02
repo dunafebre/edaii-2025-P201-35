@@ -5,16 +5,16 @@
 flowchart TD
 
     %% Fonts d'entrada
-    UI[User Input<br/>(consultes)]
-    FILE[documents.txt<br/>(persistent)]
+    UI[User Input (consultes)]
+    FILE[documents.txt (persistent)]
 
     %% Components del sistema
-    PARSER[Document Parser<br/>(crea structs)]
-    DOCS[Documents (Struct)<br/>(volàtil)]
-    GRAPH[Graph<br/>(adjacency list)]
-    INDEX[Reverse Index (HashMap)]
+    PARSER[Document Parser (crea structs)]
+    DOCS[Documents (Struct - volàtil)]
+    GRAPH[Graph (adjacency list - volàtil)]
+    INDEX[Reverse Index (HashMap - volàtil)]
     QPARSER[Query Parser]
-    SEARCH[Search Engine<br/>(filtra i ordena)]
+    SEARCH[Search Engine (filtra i ordena)]
     OUTPUT[Resultats a terminal]
 
     %% Connexions
