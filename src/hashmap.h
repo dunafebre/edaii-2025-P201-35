@@ -24,6 +24,7 @@ void Normalize(char *word);
 void AddWordToIndex(ReverseIndex *index, const char *word, Document *doc);
 DocumentList *GetDocumentsForWord(ReverseIndex *index, const char *word);
 void BuildHashMap(ReverseIndex *index, DocumentList *docs);
+void extractWords(ReverseIndex *index, Document *doc, const char *text)
 unsigned int hash(const char *str);
 void FreeHashMap(ReverseIndex *index);
 
