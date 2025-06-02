@@ -98,7 +98,7 @@ flowchart TD
     style blue fill:#b3d9ff,stroke:#333,stroke-width:1px
     style green fill:#ccffcc,stroke:#333,stroke-width:1px
     style purple fill:#c8a2c8,stroke:#333,stroke-width:1px
-    style orange fill:#ff8000,stroke:#333,stroke-width:1px
+    style lavanda fill:#eeedff,stroke:#333,stroke-width:1px
 
 
 %% Anàlisi de complexitat
