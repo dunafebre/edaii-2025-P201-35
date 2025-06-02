@@ -3,6 +3,7 @@
 #include "graph.h"
 #include "hashmap.h"
 #include <stdio.h>
+#include <time.h>
 
 #define NUM_DOCUMENTS 12
 
@@ -41,4 +42,18 @@ int main() {
   FreeHashMap(index);
   FreeDocumentGraph(graph);
   return 0;
+
+  //Calcular temps d'execució
+  struct timespec start, end;
+  long elapsed_ms;
+  clock_gettime(CLOCK_MONOTONIC, &start);
+
+  // Code to be timed (example)
+  for (long i = 0; i < 1000000000; ++i);
+
+  clock_gettime(CLOCK_MONOTONIC, &end);
+  elapsed_ms = (end.tv_sec - start.tv_sec) * 1000 +
+                 (end.tv_nsec - start.tv_nsec) / 1000000;
+
+  printf("Elapsed time: %ld ms\n", elapsed_ms);
 }
