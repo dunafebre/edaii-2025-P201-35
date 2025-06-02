@@ -5,8 +5,8 @@
 flowchart TD
 
     %% Fonts d'entrada
-    UI[User Input (consultes)]
-    FILE[documents.txt (persistent)]
+    UI["User Input (consultes)"]
+    FILE["documents.txt (persistent)"]
 
     %% Components del sistema
     PARSER[Document Parser (crea structs)]
