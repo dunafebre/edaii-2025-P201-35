@@ -54,6 +54,12 @@ flowchart TD
     style SEARCH fill:#ccffcc,stroke:#333,stroke-width:1px
     style RELLEVANCE fill:#ccffcc,stroke:#333,stroke-width:1px
     style UI fill:#b3d9ff,stroke:#333,stroke-width:1px
+    style F_PARSER fill:#c8a2c8,stroke:#333,stroke-width:1px
+    style F_DOCUMENTS fill:#c8a2c8,stroke:#333,stroke-width:1px
+    style F_HASHMAP fill:#c8a2c8,stroke:#333,stroke-width:1px
+    style F_GRAPH fill:#c8a2c8,stroke:#333,stroke-width:1px
+    style F_Q_PARSER fill:#c8a2c8,stroke:#333,stroke-width:1p
+    style F_RELLEVANCE fill:#c8a2c8,stroke:#333,stroke-width:1px
 
     %% Llegenda
     subgraph L[" Llegenda "]
