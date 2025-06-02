@@ -9,13 +9,13 @@ flowchart TD
     FILE["documents.txt (persistent)"]
 
     %% Components del sistema
-    PARSER[Document Parser (crea structs)]
-    DOCS[Documents (Struct - volàtil)]
-    GRAPH[Graph (adjacency list - volàtil)]
-    INDEX[Reverse Index (HashMap - volàtil)]
-    QPARSER[Query Parser]
-    SEARCH[Search Engine (filtra i ordena)]
-    OUTPUT[Resultats a terminal]
+    PARSER["Document Parser (crea structs)"]
+    DOCS["Documents (Struct - volàtil)"]
+    GRAPH["Graph (adjacency list - volàtil)"]
+    INDEX["Reverse Index (HashMap - volàtil)"]
+    QPARSER["Query Parser"]
+    SEARCH["Search Engine (filtra i ordena)"]
+    OUTPUT["Resultats a terminal"]
 
     %% Connexions
     FILE --> PARSER
