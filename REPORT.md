@@ -101,7 +101,7 @@ flowchart TD
     style orange fill:#ff8000,stroke:#333,stroke-width:1px
 
 
-## Anàlisi de complexitat
+%% Anàlisi de complexitat
 
 | Descripció                                                               | Big |Justificació                                                                 |
 | Parsing d’un document al `struct` (afegint els enllaços a la llista)     | O(n)         | n = nombre de paraules del document; cada paraula es processa un cop        |
