@@ -43,8 +43,6 @@ flowchart TD
 
 ---
 
-### 🧠 Llegenda visual (si vols afegir-la després del diagrama)
-
 - Color **blau clar** (`#b3d9ff`) → **Components persistents** (fitxers, input extern)
 - Color **verd clar** (`#ccffcc`) → **Components en memòria** (estructures, funcions, dades)
 
