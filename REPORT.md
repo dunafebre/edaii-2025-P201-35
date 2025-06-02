@@ -56,10 +56,10 @@ flowchart TD
     style UI fill:#b3d9ff,stroke:#333,stroke-width:1px
 
     %% Llegenda
-    subgraph L[ Llegenda ]
-        blue[Components persistents (fitxers)]
-        green[Components volàtils (memòria)]
-        purple[Funcions]
+    subgraph L[" Llegenda "]
+        blue["Components persistents (fitxers)"]
+        green["Components volàtils (memòria)"]
+        purple["Funcions"]
     end
 
     style blue fill:#b3d9ff,stroke:#333,stroke-width:1px
