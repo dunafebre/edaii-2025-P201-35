@@ -103,14 +103,6 @@ flowchart TD
 
 %% Anàlisi de complexitat
 
-| Descripció                                                               | Big |Justificació                                                                 |
-| Parsing d’un document al `struct` (afegint els enllaços a la llista)     | O(n)         | n = nombre de paraules del document; cada paraula es processa un cop        |
-| Parsing d’una consulta al `struct`                                       | O(k)         | k = nombre de paraules clau de la consulta                                  |
-| Recompte de veïns al graf global                                         | O(V + E)     | V = documents (nodes), E = enllaços (arestes); recorregut BFS o DFS         |
-| Recompte de veïns d’un document al graf                                  | O(d)         | d = grau del node; accés directe a la seva llista d’adjacència                   |
-| Cerca de documents amb una paraula clau (reverse index)                  | O(1)         | Accés directe a `HashMap` amb la clau (paraula clau)                          |
-| Cerca de documents que continguin totes les paraules clau                | O(k * d)     | k = paraules clau, d = documents per paraula (mida mitjana de cada llista)       |
-| Ordenació dels documents per score de rellevància                        | O(m log m)   | m = documents candidats retornats; s’aplica `qsort()` o similar             |
 
 
 
