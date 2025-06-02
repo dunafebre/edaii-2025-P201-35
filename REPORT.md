@@ -41,11 +41,6 @@ flowchart TD
     style UI fill:#b3d9ff,stroke:#333,stroke-width:1px
 
 
----
 
-- Color **blau clar** (`#b3d9ff`) → **Components persistents** (fitxers, input extern)
-- Color **verd clar** (`#ccffcc`) → **Components en memòria** (estructures, funcions, dades)
-
----
 
 
