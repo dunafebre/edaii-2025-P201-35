@@ -100,7 +100,7 @@ flowchart TD
     style purple fill:#c8a2c8,stroke:#333,stroke-width:1px
     style lavanda fill:#eeedff,stroke:#333,stroke-width:1px
 
-...
+```
 Anàlisi de complexitat
 
 | Descripció                                                           | Big-O       | Justificació                                                                 |
