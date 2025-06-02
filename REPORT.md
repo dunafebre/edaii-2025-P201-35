@@ -101,17 +101,24 @@ flowchart TD
     style lavanda fill:#eeedff,stroke:#333,stroke-width:1px
 
 ```
-Anàlisi de complexitat
+## Anàlisi de complexitat
 
 | Descripció                                                           | Big-O       | Justificació                                                                 |
 |----------------------------------------------------------------------|-------------|------------------------------------------------------------------------------|
-| Parsing d’un document al `struct` (amb enllaços)                    | O(n)        | n = paraules del document; es processen una per una                         |
-| Parsing d’una consulta al `struct`                                  | O(k)        | k = paraules clau de la consulta                                            |
-| Recompte de veïns al graf global (`adjacencyList`)                  | O(V + E)    | V = documents, E = enllaços; es recorre tot el graf                         |
-| Recompte de veïns d’un document                                     | O(d)        | d = grau del document; accés directe a la seva llista d’adjacència          |
-| Cerca de documents amb una paraula clau (`HashMap`)                 | O(1)        | Accés directe per clau                                                       |
-| Cerca de documents que continguin totes les paraules clau           | O(k · d)    | d = mida mitjana de la llista de documents per paraula                      |
-| Ordenació dels documents per score de rellevància                   | O(m log m)  | m = documents candidats a ordenar                                           |
+| Parsing d’un document al `struct` (amb enllaços)                    | O(n)        | n = paraules del document; es processen una per una 
+Es llegeixen totes les paraules del document una a una                        |
+| Parsing d’una consulta al `struct`                                  | O(k)        | k = paraules clau de la consulta
+La consulta es divideix en k paraules clau, cada una es processa un cop                                            |
+| Recompte de veïns al graf global (`adjacencyList`)                  | O(V + E)    | V = documents, E = enllaços; es recorre tot el graf  
+S’exploren tots els nodes (documents) i les seves connexions                       |
+| Recompte de veïns d’un document                                     | O(d)        | d = grau del document; accés directe a la seva llista d’adjacència   
+S’accedeix a la llista d’adjacència del document     |
+| Cerca de documents amb una paraula clau (`HashMap`)                 | O(1)        |    
+El `HashMap` permet accés constant per clau                                                    |
+| Cerca de documents que continguin totes les paraules clau           | O(k · d)    | d = mida mitjana de la llista de documents per paraula          
+Es recuperen k llistes i es comparen els documents que hi apareixen            |
+| Ordenació dels documents per score de rellevància                   | O(n log n)  | n = documents candidats a ordenar                                      
+Es fa sort d’una llista de m documents candidats segons el score     |
 
 
 
