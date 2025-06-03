@@ -114,22 +114,20 @@ flowchart TD
 | Ordenació dels documents per score de rellevància                   | O(n log n)  | n = documents candidats a ordenar // Es fa sort d’una llista de n documents candidats segons el score     |
 
 ## Graficar el temps de cerca
-# Amb i sense reverse index (per diferents datasets-size)
-![temps de cerca](Reverse_index_i_Sense_Reverse_index.png)
+### Amb i sense reverse index (per diferents datasets-size)
+![temps de cerca](hashmap_no_hashmap.png)
 Amb reverse index, el temps de cerca es manté gairebé constant gràcies a l’accés directe via HashMap. En canvi, sense índex invers, el sistema ha de recórrer tots els documents, cosa que fa créixer el temps de manera lineal.
 
-# Temps d'inicialització per diferents slots
-![gràfica temps init](INIT.png)
+### Temps d'inicialització per diferents slots
+![gràfica temps init](init.png)
 El temps d’inicialització creix lleugerament amb el nombre de slots, ja que s’han de preparar més posicions a la taula de hash. Tot i així, aquest cost és petit i raonable comparat amb la millora que aporta després a la cerca.
 
-# Temps de cerca per diferents slots
-![gràfica temps de cerca](SEARCH.png)
+### Temps de cerca per diferents slots
+![gràfica temps de cerca](search.png)
 A mesura que augmenta el `slot_count`, el temps de cerca disminueix bruscament al principi i es manté estable a partir d’un cert valor. Això indica que, un cop evitades les col·lisions, augmentar més la mida del `HashMap` ja no aporta gaire benefici.
 
 
 ## Millora amb el reverse index
-
-```
 Una millora de l’índex invers seria ordenar les llistes de documents i utilitzar cerca binària per accelerar la cerca de paraules. Aquesta millora augmentaria lleugerament l’ús de memòria i faria que la inicialització fos una mica més lenta (O(n log d)), però milloraria considerablement la velocitat de cerca (O(log d) en lloc de O(d)). Per tant, el temps d’execució global seria inferior en escenaris amb moltes cerques.
 
 
