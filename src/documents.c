@@ -144,7 +144,7 @@ void AddDocument(
 
 DocumentList *LoadDocumentsFromDataset() { // funció que carrega els documents
                                            // de la carpeta "datasets"
-  char path[200]; // creem una array on guardarem els directoris, carpetes on
+  char path[6000]; // creem una array on guardarem els directoris, carpetes on
                   // estan els arxius wikipedia
   DocumentList *list = InitDocumentList(); // inicialitzem la llista de
                                            // documents

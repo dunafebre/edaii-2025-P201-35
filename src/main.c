@@ -10,7 +10,13 @@
 int main() {
   // carrega i inicialitza dades
   DocumentList *docs = LoadDocumentsFromDataset();
-  ReverseIndex *index = InitHashMap();
+    clock_t start2 = clock();
+    // Executa la cerca seqüencial (sense índex invers)
+    ReverseIndex *index = InitHashMap();
+    clock_t end2 = clock();
+
+    double time_spent2 = (double)(end2 - start2) / CLOCKS_PER_SEC;
+    printf("Temps d'inicalització: %f segons\n", time_spent2);
   BuildHashMap(index, docs);
 
   DocumentGraph *graph = InitDocumentGraph(NUM_DOCUMENTS);
@@ -30,7 +36,14 @@ int main() {
     if (opcio == 1) {
       SelectOneDoc();
     } else if (opcio == 2) {
-      FerConsultaAmbIndex(index);
+      // Cerca amb reverse index
+    clock_t start = clock();
+    // Executa la cerca amb índex invers
+    FerConsultaAmbIndex(index);
+    clock_t end = clock();
+
+    double time_spent = (double)(end - start) / CLOCKS_PER_SEC;
+    printf("Temps de cerca amb reverse index: %f segons\n", time_spent);
     } else if (opcio == 3) {
       PrintDocumentsByRelevance(docs);
     } else if (opcio == 4) {
@@ -39,21 +52,8 @@ int main() {
       printf("Opció no vàlida.\n");
     }
   }
+
   FreeHashMap(index);
   FreeDocumentGraph(graph);
   return 0;
-
-  //Calcular temps d'execució
-  struct timespec start, end;
-  long elapsed_ms;
-  clock_gettime(CLOCK_MONOTONIC, &start);
-
-  // Code to be timed (example)
-  for (long i = 0; i < 1000000000; ++i);
-
-  clock_gettime(CLOCK_MONOTONIC, &end);
-  elapsed_ms = (end.tv_sec - start.tv_sec) * 1000 +
-                 (end.tv_nsec - start.tv_nsec) / 1000000;
-
-  printf("Elapsed time: %ld ms\n", elapsed_ms);
 }
