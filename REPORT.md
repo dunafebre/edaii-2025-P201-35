@@ -115,16 +115,16 @@ flowchart TD
 
 ## Graficar el temps de cerca
 ### Amb i sense reverse index (per diferents datasets-size)
-![temps de cerca](Reverse_index_i_Sense_Reverse_index.png)
+![Temps de cerca amb i sense reverse index](Reverse_index_i_sense_Reverse_index.png)
 Amb reverse index, el temps de cerca es manté gairebé constant gràcies a l’accés directe via HashMap. En canvi, sense índex invers, el sistema ha de recórrer tots els documents, cosa que fa créixer el temps de manera lineal.
 
 ### Temps d'inicialització per diferents slots
-![gràfica temps init](INIT.png)
+![Temps d'inicialització](INIT.png)
 El temps d’inicialització creix lleugerament amb el nombre de slots, ja que s’han de preparar més posicions a la taula de hash. Tot i així, aquest cost és petit i raonable comparat amb la millora que aporta després a la cerca.
 
 ### Temps de cerca per diferents slots
-![gràfica temps de cerca](SEARCH.png)
-A mesura que augmenta el `slot_count`, el temps de cerca disminueix bruscament al principi i es manté estable a partir d’un cert valor. Això indica que, un cop evitades les col·lisions, augmentar més la mida del `HashMap` ja no aporta gaire benefici.
+![Temps de cerca per slot count](SEARCH.png)
+Quan el slot_count és petit, les col·lisions són freqüents i la cerca és més lenta. A mesura que augmenta, el rendiment millora fins que s’estabilitza, mostrant que a partir d’un cert punt, afegir més slots ja no aporta guanys significatius en eficiència.
 
 
 ## Millora amb el reverse index
