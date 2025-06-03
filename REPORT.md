@@ -116,7 +116,7 @@ flowchart TD
 ## Graficar el temps de cerca
 ### Amb i sense reverse index (per diferents datasets-size)
 ![Temps de cerca amb i sense reverse index](imatges/HASHMAP.png)
-Amb reverse index, el temps de cerca es manté gairebé constant gràcies a l’accés directe via HashMap. En canvi, sense índex invers, el sistema ha de recórrer tots els documents, cosa que fa créixer el temps de manera lineal.
+Amb reverse index, el temps de cerca es manté gairebé constant gràcies a l’accés directe via HashMap. En canvi, sense índex invers, el sistema ha de recórrer tots els documents, cosa que fa créixer el temps de manera lineal. 
 
 ### Temps d'inicialització per diferents slots
 ![Temps d'inicialització](imatges/INIT.png)
