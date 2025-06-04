@@ -31,8 +31,8 @@ typedef struct {
   int count;
 } DocumentList;
 
-Document *document_desserialize(char *path);
 Links *LinksInit();
+Document *document_desserialize(char *path);
 void FreeDocument(Document *document);
 
 DocumentList *InitDocumentList();

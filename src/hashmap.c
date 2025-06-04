@@ -86,9 +86,9 @@ void extractWords(ReverseIndex *index, Document *doc, const char *text) {
         idx = 0; // tornem a inicilitzar a 0, per començar el procès amb una
                  // paraula nova
       }
-    } else if (isalnum(
-                   text[i])) { // isalum comprova que siguin números o lletres,
-                               // o sigui, signes de puntuació, per exemple
+    } else if (isalnum(text[i])) { // isalum comprova que siguin números o
+                                   // lletres, o sigui, que no siguin signes de
+                                   // puntuació, per exemple
       if (idx < MAX_WORD_LEN - 1) { // si la paraula no es pasa de la mida
                                     // maxima
         word[idx++] = text[i]; // construim la paraula, lletra per lletra, en la

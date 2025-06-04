@@ -144,7 +144,7 @@ void AddDocument(
 
 DocumentList *LoadDocumentsFromDataset() { // funció que carrega els documents
                                            // de la carpeta "datasets"
-  char path[6000]; // creem una array on guardarem els directoris, carpetes on
+  char path[200]; // creem una array on guardarem els directoris, carpetes on
                   // estan els arxius wikipedia
   DocumentList *list = InitDocumentList(); // inicialitzem la llista de
                                            // documents
@@ -184,7 +184,7 @@ void SelectOneDoc() { // funció que permet a l'usuari llegir els documents
 
   index = 0;
   for (DocumentNode *node = list->primer;
-       node != NULL; // tornema iterar sobre els documents
+       node != NULL; // tornem a iterar sobre els documents
        node = node->next, index++) {
     if (index == (DocumentSeleccionat)) { // quan trobem el document seleccionat
       printf("ID: %d\n",

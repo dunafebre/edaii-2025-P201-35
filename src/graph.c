@@ -18,7 +18,6 @@ DocumentGraph *InitDocumentGraph(
         calloc(numDocuments,
                sizeof(int)); // calloc reserva memoria i inicialitza tot a 0
   }
-
   return graph;
 }
 

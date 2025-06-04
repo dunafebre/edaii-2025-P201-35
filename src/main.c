@@ -10,13 +10,7 @@
 int main() {
   // carrega i inicialitza dades
   DocumentList *docs = LoadDocumentsFromDataset();
-    clock_t start2 = clock();
-    // Executa la cerca seqüencial (sense índex invers)
-    ReverseIndex *index = InitHashMap();
-    clock_t end2 = clock();
-
-    double time_spent2 = (double)(end2 - start2) / CLOCKS_PER_SEC;
-    printf("Temps d'inicalització: %f segons\n", time_spent2);
+  ReverseIndex *index = InitHashMap();
   BuildHashMap(index, docs);
 
   DocumentGraph *graph = InitDocumentGraph(NUM_DOCUMENTS);
@@ -36,14 +30,8 @@ int main() {
     if (opcio == 1) {
       SelectOneDoc();
     } else if (opcio == 2) {
-      // Cerca amb reverse index
-    clock_t start = clock();
-    // Executa la cerca amb índex invers
-    FerConsultaAmbIndex(index);
-    clock_t end = clock();
-
-    double time_spent = (double)(end - start) / CLOCKS_PER_SEC;
-    printf("Temps de cerca amb reverse index: %f segons\n", time_spent);
+      //FerConsultaAmbIndex(index);
+      KeyWords();
     } else if (opcio == 3) {
       PrintDocumentsByRelevance(docs);
     } else if (opcio == 4) {

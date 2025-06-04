@@ -53,7 +53,7 @@ void SearchDocs(DocumentList *docs, char paraules_clau[][MAX_PARAULA],
         printf("Document trobat amb totes les paraules:\n");
         printf("ID: %d\n", node->doc->document_id);
         printf("Títol: %s\n", node->doc->title);
-        printf("Body: %s\n\n", node->doc->body);
+        //printf("Body: %s\n\n", node->doc->body);
       }
     }
   }
