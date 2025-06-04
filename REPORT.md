@@ -115,15 +115,15 @@ flowchart TD
 
 ## Graficar el temps de cerca
 ### Amb i sense reverse index (per diferents datasets-size)
-![Temps de cerca amb i sense reverse index](imatges/HASHMAP.png)
+![Temps de cerca amb i sense reverse index](https://raw.githubusercontent.com/dunafebre/edaii-2025-P201-35/main/imatges/HASHMAP.png)
 Amb reverse index, el temps de cerca es manté gairebé constant gràcies a l’accés directe via HashMap. En canvi, sense índex invers, el sistema ha de recórrer tots els documents, cosa que fa créixer el temps de manera lineal. 
 
 ### Temps d'inicialització per diferents slots
-![Temps d'inicialització](imatges/INIT.png)
+![Temps d'inicialització](https://raw.githubusercontent.com/dunafebre/edaii-2025-P201-35/main/imatges/INIT.png)
 El temps d’inicialització creix lleugerament amb el nombre de slots, ja que s’han de preparar més posicions a la taula de hash. Tot i així, aquest cost és petit i raonable comparat amb la millora que aporta després a la cerca.
 
 ### Temps de cerca per diferents slots
-![Temps de cerca per slot count](imatges/SEARCH.png)
+![Temps de cerca per slot count](https://raw.githubusercontent.com/dunafebre/edaii-2025-P201-35/main/imatges/SEARCH.png)
 Quan el slot_count és petit, les col·lisions són freqüents i la cerca és més lenta. A mesura que augmenta, el rendiment millora fins que s’estabilitza, mostrant que a partir d’un cert punt, afegir més slots ja no aporta guanys significatius en eficiència.
 
 
